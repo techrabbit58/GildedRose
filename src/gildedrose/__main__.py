@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from .gildedrose_original import GildedRose
+from .gildedrose import GildedRose
 from .goblincode import Item
 
 
