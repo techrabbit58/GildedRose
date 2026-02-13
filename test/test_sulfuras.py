@@ -19,3 +19,13 @@ def test_sulfuras_does_not_change_in_quality(item, days_in_stock, expected_quali
     for _ in range(days_in_stock):
         gr.update_quality()
     assert item.quality == expected_quality
+
+
+@pytest.mark.parametrize("item", sulfuras())
+@pytest.mark.parametrize("days_in_stock", [1, 10, 100], scope="module")
+def test_sulfuras_sell_in_does_not_change(item, days_in_stock):
+    gr = GildedRose(items=[item])
+    sell_in = item.sell_in
+    for _ in range(days_in_stock):
+        gr.update_quality()
+    assert item.sell_in == sell_in
