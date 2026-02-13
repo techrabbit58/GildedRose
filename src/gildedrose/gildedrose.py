@@ -18,25 +18,26 @@ def update_one(item: Item) -> None:
     if item.name == "Sulfuras, Hand of Ragnaros":
         return
 
+    new_quality = item.quality
+
     if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
-        if item.quality < 50:
-            item.quality += 1
-            if item.name == "Backstage passes to a TAFKAL80ETC concert":
-                if item.sell_in <= 10 and item.quality < 50:
-                    item.quality += 1
-                if item.sell_in <= 5 and item.quality < 50:
-                    item.quality += 1
+        new_quality += 1
+        if item.name == "Backstage passes to a TAFKAL80ETC concert":
+            if item.sell_in <= 10:
+                new_quality += 1
+            if item.sell_in <= 5:
+                new_quality += 1
     else:
-        if item.quality > 0:
-            item.quality -= 1
+        new_quality -= 1
 
     if item.sell_in <= 0:
         if item.name == "Aged Brie":
-            item.quality = min(50, item.quality + 1)
+            new_quality += 1
         elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            item.quality = 0
+            new_quality = 0
         else:
-            item.quality = max(0, item.quality - 1)
+            new_quality -= 1
 
+    item.quality = max(0, min(50, new_quality))
     item.sell_in -= 1
 
