@@ -3,7 +3,7 @@ from collections.abc import Iterable
 from gildedrose.goblincode import Item
 
 
-class GildedRose(object):
+class GildedRose:
 
     def __init__(self, items: Iterable[Item]) -> None:
         self.items = items
@@ -19,26 +19,21 @@ def update_one(item: Item) -> None:
         return
 
     new_quality = item.quality
+    common_delta = 1 if item.sell_in > 0 else 2
 
     if item.name == "Aged Brie":
-        new_quality += 1
+        new_quality += common_delta
     elif item.name == "Backstage passes to a TAFKAL80ETC concert":
         if item.sell_in > 10:
             new_quality += 1
         elif item.sell_in > 5:
             new_quality += 2
-        elif item.sell_in > 0:  # not more than 5
+        elif item.sell_in > 0:
             new_quality += 3
-    else:
-        new_quality -= 1
-
-    if item.sell_in <= 0:
-        if item.name == "Aged Brie":
-            new_quality += 1
-        elif item.name == "Backstage passes to a TAFKAL80ETC concert":
-            new_quality = 0
         else:
-            new_quality -= 1
+            new_quality = 0
+    else:
+        new_quality -= common_delta
 
     item.quality = max(0, min(50, new_quality))
     item.sell_in -= 1
