@@ -4,15 +4,15 @@ from gildedrose.gildedrose import GildedRose
 from gildedrose.goblincode import Item
 
 
-def common_items() -> list[Item]:
+def normal_items() -> list[Item]:
     return [
         Item(name="+5 Dexterity Vest", sell_in=10, quality=20),
         Item(name="Elixir of the Mongoose", sell_in=5, quality=7),
     ]
 
 
-@pytest.mark.parametrize("item", common_items())
-def test_common_item_sell_in_and_quality_decreases_by_one_every_day(item):
+@pytest.mark.parametrize("item", normal_items())
+def test_normal_item_sell_in_and_quality_decreases_by_one_every_day(item):
     sell_in = item.sell_in
     quality = item.quality
     gr = GildedRose([item])
@@ -23,8 +23,8 @@ def test_common_item_sell_in_and_quality_decreases_by_one_every_day(item):
         quality = item.quality
 
 
-@pytest.mark.parametrize("item", common_items())
-def test_common_item_minimum_quality_is_0_and_never_negative(item):
+@pytest.mark.parametrize("item", normal_items())
+def test_normal_item_minimum_quality_is_0_and_never_negative(item):
     gr = GildedRose([item])
     days_in_stock = max(item.quality + 1, item.sell_in + 1)
     for _ in range(days_in_stock):
@@ -33,8 +33,8 @@ def test_common_item_minimum_quality_is_0_and_never_negative(item):
     assert item.quality == 0
 
 
-@pytest.mark.parametrize("item", common_items())
-def test_common_item_double_decrease_quality_after_sell_by(item):
+@pytest.mark.parametrize("item", normal_items())
+def test_normal_item_double_decrease_quality_after_sell_by(item):
     gr = GildedRose([item])
     days_in_stock = item.sell_in
     quality = item.quality

@@ -1,3 +1,4 @@
+import re
 from collections.abc import Iterable
 
 from gildedrose.goblincode import Item
@@ -15,15 +16,15 @@ class GildedRose:
 
 def update_one(item: Item) -> None:
 
-    if item.name == "Sulfuras, Hand of Ragnaros":
+    if item.name.startswith("Sulfuras"):
         return
 
     new_quality = item.quality
-    common_delta = 1 if item.sell_in > 0 else 2
+    normal_delta = 1 if item.sell_in > 0 else 2
 
-    if item.name == "Aged Brie":
-        new_quality += common_delta
-    elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+    if item.name.startswith("Aged Brie"):
+        new_quality += normal_delta
+    elif item.name.startswith("Backstage passes"):
         if item.sell_in > 10:
             new_quality += 1
         elif item.sell_in > 5:
@@ -33,7 +34,7 @@ def update_one(item: Item) -> None:
         else:
             new_quality = 0
     else:
-        new_quality -= common_delta
+        new_quality -= normal_delta
 
     item.quality = max(0, min(50, new_quality))
     item.sell_in -= 1
