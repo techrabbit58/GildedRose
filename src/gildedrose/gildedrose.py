@@ -1,4 +1,3 @@
-import re
 from collections.abc import Iterable
 
 from gildedrose.goblincode import Item
@@ -33,6 +32,8 @@ def update_one(item: Item) -> None:
             new_quality += 3
         else:
             new_quality = 0
+    elif item.name.startswith("Conjured"):
+        new_quality -= normal_delta * 2
     else:
         new_quality -= normal_delta
 

@@ -16,8 +16,8 @@ I do not start with approval tests. I use common unit tests instead.
 1. Create a bunch of tests to verify the code's conformity to the requirements. :rose:
 2. Refactor the original code to make it maintainable. :rose:
 3. Create another test for the new item type requirement "update conjured items correctly". :rose:
-4. Add a new feature "update conjured items correctly", following the kata's requirement.
+4. Add a new feature "update conjured items correctly", following the kata's requirement. :rose:
 
-__WARNING:__ Never modify the Items class!
+__WARNING:__ Beware of the goblin. Never modify the Items class!
 
 ---
