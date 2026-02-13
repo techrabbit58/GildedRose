@@ -20,13 +20,15 @@ def update_one(item: Item) -> None:
 
     new_quality = item.quality
 
-    if item.name == "Aged Brie" or item.name == "Backstage passes to a TAFKAL80ETC concert":
+    if item.name == "Aged Brie":
         new_quality += 1
-        if item.name == "Backstage passes to a TAFKAL80ETC concert":
-            if item.sell_in <= 10:
-                new_quality += 1
-            if item.sell_in <= 5:
-                new_quality += 1
+    elif item.name == "Backstage passes to a TAFKAL80ETC concert":
+        if item.sell_in > 10:
+            new_quality += 1
+        elif item.sell_in > 5:
+            new_quality += 2
+        elif item.sell_in > 0:  # not more than 5
+            new_quality += 3
     else:
         new_quality -= 1
 
