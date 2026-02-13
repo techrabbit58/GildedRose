@@ -1,6 +1,7 @@
 from __future__ import print_function
 
 from .gildedrose import *
+from .goblincode import Item
 
 
 def main():

@@ -1,6 +1,7 @@
 import pytest
 
-from gildedrose.gildedrose import Item, GildedRose
+from gildedrose.gildedrose import GildedRose
+from gildedrose.goblincode import Item
 
 
 @pytest.fixture

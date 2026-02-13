@@ -1,6 +1,6 @@
 import pytest
 
-from gildedrose.gildedrose import Item
+from gildedrose.goblincode import Item
 
 
 @pytest.mark.parametrize('item', [
