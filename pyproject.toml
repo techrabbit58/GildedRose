@@ -6,3 +6,12 @@ requires-python = ">=3.14"
 dependencies = [
     "pytest-cov>=7.0.0",
 ]
+
+[tool.pytest]
+pythonpath = ["src"]
+addopts = [
+    "--import-mode=importlib",
+    "--cov=gildedrose.gildedrose",
+    "--cov=gildedrose.goblincode",
+    "--cov-report=term-missing",
+]
